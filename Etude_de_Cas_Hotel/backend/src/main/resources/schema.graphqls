@@ -1,0 +1,53 @@
+type Query {
+    reservation(id: Long!): Reservation
+    allReservations: [Reservation]
+}
+
+type Mutation {
+    createReservation(
+        clientId: Long!,
+        chambreId: Long!,
+        dateDebut: String!,
+        dateFin: String!,
+        preferences: String
+    ): Reservation
+    
+    updateReservation(
+        id: Long!,
+        clientId: Long!,
+        chambreId: Long!,
+        dateDebut: String!,
+        dateFin: String!,
+        preferences: String
+    ): Reservation
+    
+    deleteReservation(id: Long!): Boolean
+}
+
+type Reservation {
+    id: Long
+    client: Client
+    chambre: Chambre
+    dateDebut: String
+    dateFin: String
+    preferences: String
+    status: String
+    createdAt: Long
+    updatedAt: Long
+}
+
+type Client {
+    id: Long
+    nom: String
+    prenom: String
+    email: String
+    telephone: String
+}
+
+type Chambre {
+    id: Long
+    type: String
+    prix: Float
+    disponible: Boolean
+    description: String
+}
